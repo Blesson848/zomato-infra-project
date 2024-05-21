@@ -1,0 +1,7 @@
+project_name     = "zomato"
+project_env      = "development"
+instance_type    = "t2.micro"
+instance_ami     = "ami-0cc9838aa7ab1dce7"
+keypair_name     = "zomato-development"
+project_domain   = "dev.blesson.shop"
+project_hostname = "www"
