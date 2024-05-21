@@ -40,12 +40,24 @@ resource "aws_security_group" "frontend_access" {
     ipv6_cidr_blocks = ["::/0"]
   }
 
-
   tags = {
-    Name    = "${var.project_name}-${var.project_env}-frontend"
-    Project = "${var.project_name}"
-    Env     = "${var.project_env}"
+    Name = "${var.project_name}-${var.project_env}-frontend"
+
   }
+
 }
 
+resource "aws_instance" "frontend" {
 
+  ami                    = var.instance_ami
+  instance_type          = var.instance_type
+  key_name               = var.keypair_name
+  vpc_security_group_ids = [aws_security_group.frontend_access.id]
+  user_data              = file("setup.sh")
+
+
+  tags = {
+    Name = "${var.project_name}-${var.project_env}-frontend"
+  }
+
+}

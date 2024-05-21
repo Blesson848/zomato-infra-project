@@ -41,3 +41,9 @@ variable "project_hostname" {
   type        = string
 }
 
+variable "project_owner" {
+
+  description = "my owner name"
+  type        = string
+
+}
