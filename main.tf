@@ -61,3 +61,28 @@ resource "aws_instance" "frontend" {
   }
 
 }
+
+
+resource "aws_eip" "frontend" {
+  instance = aws_instance.frontend.id
+  domain   = "vpc"
+
+  tags = {
+    Name    = "${var.project_name}-${var.project_env}-frontend"
+    Project = "${var.project_name}"
+    Env     = "${var.project_env}"
+  }
+
+}
+
+
+
+
+resource "aws_route53_record" "frotned" {
+
+  zone_id = data.aws_route53_zone.public.zone_id
+  name    = "${var.project_hostname}.${var.project_domain}"
+  type    = "A"
+  ttl     = "300"
+  records = [aws_eip.frontend.public_ip]
+}
