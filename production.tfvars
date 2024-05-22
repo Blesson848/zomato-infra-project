@@ -1,0 +1,8 @@
+project_name     = "zomato"
+project_env      = "production"
+instance_type    = "t2.micro"
+instance_ami     = "ami-013e83f579886baeb"
+keypair_name     = "zomato-production"
+project_domain   = "blesson.shop"
+project_hostname = "www"
+project_owner    = "blesson"
